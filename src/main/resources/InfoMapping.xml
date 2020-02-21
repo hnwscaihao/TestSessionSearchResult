@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fieldMapping>
+<!--	testcaseid 查询详情 name自定义名字 reality为intgerity字段如果没有则不显示-->
+	<type name="Test Case" >
+
+		<field name="Verdict"  fieldType="String" reality ="verdictType"></field>
+		<field name="SW Version" reality ="SW Version"	></field>
+		<field name="Observed Result" reality ="Observed Result"	></field>
+		<field  name="Test Case ID"  reality="caseID"></field>
+
+		<field name="Serverity" reality ="Result Serverity"></field>
+		<field name="HW Version" reality ="HW Result Version"></field>
+		<field name="Reproducibility" reality ="Reproducibility"	></field>
+
+		<!--		最后-->
+		<field  name="Annotation"  reality="annotation"></field>
+
+<!--		<field  name="sessionid"  reality="sessionID"></field>-->
+<!--		<field  name="Comment"  reality ="Comment"></field>-->
+<!--		<field  name="Tester"  	reality ="Tester"></field>-->
+<!--		<field  name="Test Date" reality ="Test Date"></field>-->
+	</type>
+</fieldMapping>
+
+
