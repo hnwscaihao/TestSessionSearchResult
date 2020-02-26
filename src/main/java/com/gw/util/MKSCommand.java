@@ -1189,7 +1189,7 @@ public class MKSCommand {
 			 logger.info("身份验证失败!! :" + issueCount);
 		}
 //		tsIds.add("21193");
-		tsIds.add("11207");
+//		tsIds.add("11207");
 		if (tsIds.size() > 0) {//如果选中的id集合不为空，通过id获取条目简要信息
 			List<Map<String, String>> itemByIds = cmd.getItemByIds(tsIds, Arrays.asList("ID", "Type","Summary","Tests"));
 			List<String> notTSList = new ArrayList<String>();
