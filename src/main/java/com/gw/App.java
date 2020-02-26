@@ -43,11 +43,12 @@ public class App {
                                 List<String> cs = m.getSuiteById(s.get("id"), Arrays.asList("Contains"));
                                 for (String s1 : cs) {
                                     Map<String, String> caseinfo = m.getCaseInfoById(s1, Arrays.asList("Text", "id"));
-                                    imp.cmb.addItem(imp.textxz(caseinfo.get("Text")));
-                                    ids.put(caseinfo.get("id"),caseinfo.get("Text"));
+                                    String text = imp.textxz(caseinfo.get("Text"),caseinfo.get("id"));
+                                    imp.cmb.addItem(text);
+                                    ids.put(caseinfo.get("id"),text);
                                 }
                             }else if(s.get("Type").equals("Test Case")) {
-                                String casename = imp.textxz(s.get("Text"));
+                                String casename = imp.textxz(s.get("Text"),s.get("id"));
                                 imp.cmb.addItem(casename);
                                 ids.put(s.get("id"),casename);
                             }

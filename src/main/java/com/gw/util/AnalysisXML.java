@@ -19,14 +19,16 @@ public class AnalysisXML {
 
     private static final Log log = LogFactory.getLog(ImportService.class);
 
-    public Result resultXml(){
+    public Result resultXml(String type){
        Result r  = new Result();
-       String jdsx = "Test Case";
+       String jdsx = type;
        //1.创建Reader对象
        SAXReader reader = new SAXReader();
        //2.加载xml
        Document document = null;
        List<Map<String,String>> m = new ArrayList<Map<String,String>>();
+       Map<String,String> lsm1 = new HashMap<String,String>();
+       Map<String,String> lsm2 = new HashMap<String,String>();
        try {
            String pathxml = System.getProperty("user.home")+"\\InfoMapping.xml";
 //           log.info("用户的主目录----------------------"+pathxml);
@@ -56,8 +58,14 @@ public class AnalysisXML {
                    while (iterator1.hasNext()){
                        Element stuChild = (Element) iterator1.next();
                        Map<String,String> lsm = new HashMap<String,String>();
+                       //记录名字
                        lsm.put(stuChild.attribute("name").getValue(),stuChild.attribute("reality").getValue());
                        m.add(lsm);
+                       //记录类型
+                       lsm1.put(stuChild.attribute("name").getValue(),stuChild.attribute("type").getValue());
+
+                       //记录类型
+                       lsm2.put(stuChild.attribute("name").getValue(),stuChild.attribute("fieldType").getValue());
 //                       System.out.println("节点名："+stuChild.getName()+"---节点值："+stuChild.getStringValue());
                    }
                }
@@ -66,6 +74,8 @@ public class AnalysisXML {
            e.printStackTrace();
        }
        r.setData(m);
+       r.setMap(lsm1);
+       r.setMap1(lsm2);
        return r;
    }
 
@@ -95,6 +105,6 @@ public class AnalysisXML {
 
    public static void main(String[] args){
        AnalysisXML r = new AnalysisXML();
-       r.resultXml();
+//       r.resultXml();
    }
 }

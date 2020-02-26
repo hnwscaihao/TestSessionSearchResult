@@ -3,6 +3,7 @@ package com.gw.ui;
 import com.gw.service.ImportService;
 import com.gw.ui.swingUI.InfiniteProgressPanel;
 import com.gw.util.MKSCommand;
+import com.gw.util.Result;
 import com.mks.api.response.APIException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -44,8 +45,9 @@ import java.util.Map;
     public String sessionid = "";
     public  Map<String,String> caseIds = new HashMap<String,String>();
 
-    List<Map<String,String>> testReulst; //查询返回的结果
+    List<Map<String,String>> testReulst;
     List<Map<String,String>> CaseReulst;
+    String  TypeStr;//保存longtext 类型
 
     Box box1 = Box.createHorizontalBox();
     Box box2 = Box.createHorizontalBox();
@@ -177,18 +179,19 @@ import java.util.Map;
                     String caseName = cmb.getSelectedItem().toString();
                     String testSession = "";
                     String testSessionId = txtfield1.getText();
-                    int fla = 0;
+                    int fla = 0; //判断填写的caseid 是否包含在session中
                     for(String s : caseIds.keySet()){
                         String  n = caseIds.get(s);
-                        if(dzzfc(caseName,caseIds.get(s))){
+//                        if(dzzfc(caseName,caseIds.get(s))){
+                        if(caseName.equals(caseIds.get(s))){
                             testSession = s;
                         }
                         if(testSessionId.equals(s)){
                             fla ++;
                         }
                     }
-
                     testReulst = new ArrayList<Map<String,String>>();
+                    TypeStr = "";
 
                     box6.removeAll();
                     box7.removeAll();
@@ -200,7 +203,15 @@ import java.util.Map;
                         return;
                     }else if(!testSession.equals("")){
                         try {
-                            testReulst = m.viewresultByCaseID(sessionid,testSession);   //测试结果数据
+                            Result result = m.viewresultByCaseID(sessionid,testSession);
+                            testReulst = (List<Map<String,String>>)result.getData();   //测试结果数据
+                            Map<String,String> map =  result.getMap1();
+                            for(String s : map.keySet()){
+                                if(map.get(s).equals("LongText")){
+                                    TypeStr += s + ",";
+                                }
+                            }
+//                            TypeStr = TypeStr.substring(0,TypeStr.length()-1);
 //                            CaseReulst =  m.viewIssueBySessionId(testSession,"caseId");
 //                            log.info("点击搜索session ID : " + sessionid+","+testSessionId);
                             if(testReulst.size()>0){
@@ -220,7 +231,15 @@ import java.util.Map;
                                 JOptionPane.showMessageDialog(null,"填写的CaseID没有与testSession关联，请重新输入 !","错误",0);
                                 return;
                             }
-                            testReulst = m.viewresultByCaseID(sessionid,testSessionId);     //测试结果数据
+                            Result result = m.viewresultByCaseID(sessionid,testSessionId);
+                            testReulst = (List<Map<String,String>>)result.getData();     //测试结果数据
+                            Map<String,String> map =  result.getMap1();
+                            for(String s : map.keySet()){
+                                if(map.get(s).equals("LongText")){
+                                    TypeStr += s + ",";
+                                }
+                            }
+//                            TypeStr = TypeStr.substring(0,TypeStr.length()-1);
 //                            CaseReulst =  m.viewIssueBySessionId(testSession,"caseId"); //case数据
 //                             m.getResult("",testSession,"Test Case");
 //                            log.info("点击搜索session : " + sessionid+","+testSession);
@@ -255,6 +274,11 @@ import java.util.Map;
         for(Map<String,String> testMap : testReulst){
             for(String s : testMap.keySet()){
                 String value  = testMap.get(s);
+                if(s.equals("Test Input") || s.equals("Test Output") || s.equals("Test procedure")){
+                    if(value ==null || value.equals("")){
+                        value = "N/A";
+                    }
+                }
 //                                JLabel jl = new JLabel(s,JLabel.RIGHT);
                 JTextField jl=new JTextField(s,16);
                 jl.setEditable(false);  //不可编辑
@@ -265,8 +289,8 @@ import java.util.Map;
 //                                jt.setBorder(null);  //不显示边框
                 JPanel jp = new JPanel();
                 jp.setSize(30,1);
-                if(s.equals("Annotation")){      //文本域单独box
-                    JTextArea jta = new JTextArea(value,4,54);
+                if(TypeStr.indexOf(s) >-1){      //文本域单独box  s.equals("Annotation")
+                    JTextArea jta = new JTextArea(value,4,50);
                     jta.setEnabled(false);
                     JPanel jpl = new JPanel();
                     jpl.add(jl);
@@ -275,7 +299,9 @@ import java.util.Map;
                 }else {                     //输入框每竖行一个box
                     jp.add(jl);
                     jp.add(jt);
-                    if(i<testReulst.size()/2){
+                    int a = testReulst.size();
+                    int b = TypeStr.split(",").length;
+                    if(i <= (a-b)/2){
                         box6.add(jp);
                         box6L++;
                     }else {
@@ -302,15 +328,15 @@ import java.util.Map;
     }
 
 //大于10的字体缩略
-    public String textxz(String str){
+    public String textxz(String str,String id){
         String  r = "";
-        log.info("字符串长度："+str.length());
-        if(str.length()>20){
-            r = str.substring(0,20) + "...";
+//        log.info("字符串长度："+str.length());
+        if(str.length()>15){
+            r = str.substring(0,15)  + "..." + "(" +id+ ")";
         }else {
-            r = str;
+            r = str + "(" +id+ ")" ;
         }
-        log.info("缩略后字符串："+r );
+//        log.info("缩略后字符串："+r );
         return r;
     }
 

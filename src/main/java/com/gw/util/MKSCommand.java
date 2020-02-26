@@ -260,6 +260,7 @@ public class MKSCommand {
 		return list;
 	}
 
+	//查询caseid和name
 	public Map<String, String> getCaseInfoById(String id, List<String> fields) throws APIException {
 		Map<String, String> list = new HashMap<>();
 		Command cmd = new Command("im", "issues");
@@ -294,6 +295,35 @@ public class MKSCommand {
 			throw e;
 		}
 		return list;
+	}
+
+	//根据id查询单个结果
+	public String getTypeById(String id, String field) throws APIException {
+		String str = "";
+		Command cmd = new Command("im", "issues");
+		MultiValue mv = new MultiValue();
+		mv.setSeparator(",");
+		mv.add(field);
+		Option op = new Option("fields", mv);
+		cmd.addOption(op);
+		cmd.addSelection(id);
+
+		Response res = null;
+		try {
+			res = mksCmdRunner.execute(cmd);
+			WorkItemIterator it = res.getWorkItems();
+			while (it.hasNext()) {
+				WorkItem wi = it.next();
+				if(wi.getField(field) != null ){
+					str = wi.getField(field).getValueAsString();
+				}
+			}
+		} catch (APIException e) {
+			// success = false;
+			logger.error(e.getMessage());
+			throw e;
+		}
+		return str;
 	}
 
 	/**
@@ -819,65 +849,65 @@ public class MKSCommand {
 	 * @return
 	 * @throws APIException
 	 */
-	public Map<String, String> viewIssueBySessionId(String id, String idType)
-			throws APIException {
-		Command cmd = new Command(Command.IM, "viewissue");
-		MultiValue mv = new MultiValue(",");
-		cmd.addSelection(id);
-		Response res = mksCmdRunner.execute(cmd);
-		WorkItemIterator it = res.getWorkItems();
-		List<Map<String, String>> relations = new ArrayList<Map<String, String>>();
-		Map<String, String> map = new HashMap<String, String>();
-		while (it.hasNext()) {
-			WorkItem wi = it.next();
-			Iterator<?> iterator = wi.getFields();
-//			Map<String, String> map = new HashMap<>();
-			while (iterator.hasNext()) {
-				Field field = (Field) iterator.next();
-				String fieldName = field.getName();
-				System.out.println(fieldName);
-//				if("MKSIssueTestResults".equals(fieldName)){
-//					field.getList();
+//	public Map<String, String> viewIssueBySessionId(String id, String idType)
+//			throws APIException {
+//		Command cmd = new Command(Command.IM, "viewissue");
+//		MultiValue mv = new MultiValue(",");
+//		cmd.addSelection(id);
+//		Response res = mksCmdRunner.execute(cmd);
+//		WorkItemIterator it = res.getWorkItems();
+//		List<Map<String, String>> relations = new ArrayList<Map<String, String>>();
+//		Map<String, String> map = new HashMap<String, String>();
+//		while (it.hasNext()) {
+//			WorkItem wi = it.next();
+//			Iterator<?> iterator = wi.getFields();
+////			Map<String, String> map = new HashMap<>();
+//			while (iterator.hasNext()) {
+//				Field field = (Field) iterator.next();
+//				String fieldName = field.getName();
+//				System.out.println(fieldName);
+////				if("MKSIssueTestResults".equals(fieldName)){
+////					field.getList();
+////				}
+//				//如果是sessionid 则查询test session相关信息 lxg
+//				if("sessionId".equals(idType)){
+//					if("Tests".equals(fieldName)){
+//						StringBuilder sb = new StringBuilder();
+//						ItemList il = (ItemList) field.getList();
+//						for (int i = 0; i < il.size(); i++) {
+//							Item item = (Item) il.get(i);
+//							if (i > 0) {
+//								sb.append(",");
+//							}
+//							sb.append(item.getId());
+//						}
+//						map.put(fieldName, sb.toString());
+//					}
+//					if("Software version".equals(fieldName) || "Hardware version".equals(fieldName)){
+//						System.out.println("123");
+//					}
 //				}
-				//如果是sessionid 则查询test session相关信息 lxg
-				if("sessionId".equals(idType)){
-					if("Tests".equals(fieldName)){
-						StringBuilder sb = new StringBuilder();
-						ItemList il = (ItemList) field.getList();
-						for (int i = 0; i < il.size(); i++) {
-							Item item = (Item) il.get(i);
-							if (i > 0) {
-								sb.append(",");
-							}
-							sb.append(item.getId());
-						}
-						map.put(fieldName, sb.toString());
-					}
-					if("Software version".equals(fieldName) || "Hardware version".equals(fieldName)){
-						System.out.println("123");
-					}
-				}
-				//如果是caseId 则查询caseId相关信息 lxg
-				if("caseId".equals(idType)){
-					Result r  =  new AnalysisXML().resultXml();
-					List<Map<String,String>> m  = (List<Map<String,String>>)r.getData();
-					for(Map<String,String> mi: m){
-						for(String key : mi.keySet()){
-							String velue = mi.get(key);
-							logger.info(fieldName +"++++++++"+velue+"=========="+fieldName .equals(velue));
-							if(velue.equals(fieldName)){
-								String il =  field.getValue()==null?"":field.getValue().toString();
-								map.put(key, il);
-							}
-						}
-					}
-				}
-
-			}
-//			relations.add(map);
-		}
-		return map;
-	}
+//				//如果是caseId 则查询caseId相关信息 lxg
+//				if("caseId".equals(idType)){
+//					Result r  =  new AnalysisXML().resultXml();
+//					List<Map<String,String>> m  = (List<Map<String,String>>)r.getData();
+//					for(Map<String,String> mi: m){
+//						for(String key : mi.keySet()){
+//							String velue = mi.get(key);
+//							logger.info(fieldName +"++++++++"+velue+"=========="+fieldName .equals(velue));
+//							if(velue.equals(fieldName)){
+//								String il =  field.getValue()==null?"":field.getValue().toString();
+//								map.put(key, il);
+//							}
+//						}
+//					}
+//				}
+//
+//			}
+////			relations.add(map);
+//		}
+//		return map;
+//	}
 
 	/**
 	 * 查询测试结果 lxg
@@ -886,17 +916,41 @@ public class MKSCommand {
 	 * @return
 	 * @throws APIException
 	 */
-	public List<Map<String,String>> viewresultByCaseID(String SesssionId, String CaseID) throws APIException {
-		Command cmd = new Command("tm", "results");
+	public Result viewresultByCaseID(String SesssionId, String CaseID) throws APIException {
+		Result result = new Result(); //最终返回数据
+		List<Map<String,String>> map = new ArrayList<Map<String,String>>();
+		Map<String,String> resultMap = new HashMap<String,String>();//查询返回数据
+		List<String> fields = new ArrayList<String>();      //查询条件list
+//		Map<String,String> cstj = new HashMap<>();      //查询条件list
+		Result r = new Result();
 
+		Command cmd = new Command("tm", "results");
 		cmd.addOption(new Option("caseID", CaseID));
-		List<String> fields = new ArrayList<String>();
-		Result r  =  new AnalysisXML().resultXml();
+
+        if(getTypeById(CaseID,"Category").equals("System Qualification Test")){
+			r  =  new AnalysisXML().resultXml("System Qualification Test");
+		} else if(getTypeById(CaseID,"Category").equals("System Integration Test")){
+			r  =  new AnalysisXML().resultXml("System Integration Test");
+		} else if(getTypeById(CaseID,"Category").equals("Software Qualification Test")){
+			r  =  new AnalysisXML().resultXml("Software Qualification Test");
+		} else if(getTypeById(CaseID,"Category").equals("Software Integration Test")){
+			r  =  new AnalysisXML().resultXml("Software Integration Test");
+		} else {
+			JOptionPane.showMessageDialog(null, "当前Test Case无此类型模板！","错误",0);
+		}
+
 		List<Map<String,String>> m  = (List<Map<String,String>>)r.getData();
+		Map<String,String> sjtype  = (Map<String,String>)r.getMap();
 		for(Map<String,String> mi: m){
 			for(String key : mi.keySet()){
 				String velue = mi.get(key);
-				fields.add(velue);
+				String type = sjtype.get(key);
+				if(type.equals("Test Results")){
+					fields.add(velue);
+				}
+//				else {
+//					cstj.put(key,getTypeById(CaseID,type));
+//				}
 			}
 		}
 		MultiValue mv = new MultiValue();
@@ -907,8 +961,7 @@ public class MKSCommand {
 		cmd.addOption(new Option("fields", mv));
 		Response res = mksCmdRunner.execute(cmd);
 		WorkItemIterator it = res.getWorkItems();
-		List<Map<String,String>> map = new ArrayList<Map<String,String>>();
-		Map<String,String> resultMap = new HashMap<String,String>();
+
 		while (it.hasNext()) {
 			WorkItem wi = it.next();
 			Iterator<?> iterator = wi.getFields();
@@ -920,16 +973,27 @@ public class MKSCommand {
 		//根据xml内容遍历 （主要是排序）
 		for(Map<String,String> mi: m){
 			for(String key : mi.keySet()){
-				for(String s : resultMap.keySet()){
-					if(mi.get(key).equals(s)){
+				String type = sjtype.get(key);
+				if(resultMap.size()>0){
+					if(type.equals("Test Results")){
+						for(String s : resultMap.keySet()){
+							if(mi.get(key).equals(s)){
+								Map<String,String> lsm = new HashMap<String,String>();
+								lsm.put(key, resultMap.get(s));
+								map.add(lsm);
+							}
+						}
+					}else {
 						Map<String,String> lsm = new HashMap<String,String>();
-						lsm.put(key, resultMap.get(s));
+						lsm.put(key, getTypeById(CaseID,mi.get(key)));
 						map.add(lsm);
 					}
 				}
 			}
 		}
-		return map;
+		result.setData(map);
+		result.setMap1(r.getMap1());
+		return result;
 	}
 
 	public List<Map<String, Object>> getResult(String sessionID, String suiteID, String type) throws APIException {
@@ -1125,7 +1189,7 @@ public class MKSCommand {
 			 logger.info("身份验证失败!! :" + issueCount);
 		}
 //		tsIds.add("21193");
-//		tsIds.add("11207");
+		tsIds.add("11207");
 		if (tsIds.size() > 0) {//如果选中的id集合不为空，通过id获取条目简要信息
 			List<Map<String, String>> itemByIds = cmd.getItemByIds(tsIds, Arrays.asList("ID", "Type","Summary","Tests"));
 			List<String> notTSList = new ArrayList<String>();

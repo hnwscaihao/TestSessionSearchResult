@@ -1,24 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <fieldMapping>
-<!--	testcaseid 查询详情 name自定义名字 reality为intgerity字段如果没有则不显示-->
-	<type name="Test Case" >
+<!--	testcaseid 查询详情 name自定义名字 reality为intgerity字段如果没有则不显示 type为字段在哪个对象中
+		fieldType字段类型
+-->
+	<type name="System Qualification Test" >
+		<field name="Verdict"  reality ="verdictType" type = "Test Results" fieldType="String" ></field>
+		<field name="SW Version" reality ="SW Version"	type = "Test Results" fieldType="String" ></field>
+		<field name="Observed Result" reality ="Observed Result"	type = "Test Results" fieldType="String" ></field>
+		<field name="Expected Results" reality ="Expected Results"	type = "Test Case" fieldType="String" ></field>
+		<field name="Tester" reality ="Tester"	type = "Test Results" fieldType="String" ></field>
 
-		<field name="Verdict"  fieldType="String" reality ="verdictType"></field>
-		<field name="SW Version" reality ="SW Version"	></field>
-		<field name="Observed Result" reality ="Observed Result"	></field>
-		<field  name="Test Case ID"  reality="caseID"></field>
+<!--	<field  name="Test Case ID"  reality="caseID"></field>-->
 
-		<field name="Serverity" reality ="Result Serverity"></field>
-		<field name="HW Version" reality ="HW Result Version"></field>
-		<field name="Reproducibility" reality ="Reproducibility"	></field>
+		<field name="Serverity" reality ="Result Serverity" type = "Test Results" fieldType="String" ></field>
+		<field name="HW Version" reality ="HW Result Version" type = "Test Results" fieldType="String" ></field>
+		<field name="Reproducibility" reality ="Reproducibility"	type = "Test Results" fieldType="String" ></field>
+		<field name="Test date" reality ="Test date"	type = "Test Results" fieldType="String" ></field>
+
+	<!--		最后-->
+		<field name="Test procedure" reality ="Test Procedure"	type = "Test Step" fieldType="LongText" ></field>
+		<field  name="Annotation"  reality="annotation" type = "Test Results" fieldType="LongText"></field>
+
+	<!--		<field  name="sessionid"  reality="sessionID"></field>-->
+	<!--		<field  name="Comment"  reality ="Comment"></field>-->
+	<!--		<field  name="Tester"  	reality ="Tester"></field>-->
+	<!--		<field  name="Test Date" reality ="Test Date"></field>-->
+	</type>
+	<type name="System Integration Test" >
+		<field name="Verdict"  fieldType="String" reality ="verdictType" type = "Test Results"></field>
+		<field name="SW Version" reality ="SW Version"	type = "Test Results" fieldType="String"></field>
+		<field name="Observed Result" reality ="Observed Result"	type = "Test Results" fieldType="String"></field>
+		<field name="Tester" reality ="Tester"	type = "Test Results" fieldType="String"></field>
+		<field name="Expected Results" reality ="Expected Results"	type = "Test Case" fieldType="String"></field>
+
+<!--		<field  name="Test Case ID"  reality="caseID"></field>-->
+
+		<field name="Serverity" reality ="Result Serverity" type = "Test Results" fieldType="String"></field>
+		<field name="HW Version" reality ="HW Result Version" type = "Test Results" fieldType="String"></field>
+		<field name="Reproducibility" reality ="Reproducibility"	type = "Test Results" fieldType="String"></field>
+		<field name="Test date" reality ="Test date"	type = "Test Results" fieldType="String"></field>
 
 		<!--		最后-->
-		<field  name="Annotation"  reality="annotation"></field>
+		<field name="Call depth" reality ="Call depth"	type = "Test Step" fieldType="LongText"></field>
+		<field  name="Annotation"  reality="annotation" type = "Test Results" fieldType="LongText"></field>
+	</type>
+	<type name="Software Qualification Test" >
+		<field name="Verdict"  fieldType="String" reality ="verdictType" type = "Test Results" ></field>
+		<field name="SW Version" reality ="SW Version"	type = "Test Results" fieldType="String"></field>
+		<field name="Observed Result" reality ="Observed Result"	type = "Test Results" fieldType="String"></field>
+		<field name="Expected Results" reality ="Expected Results"	type = "Test Case" fieldType="String"></field>
+		<field name="Tester" reality ="Tester"	type = "Test Results" fieldType="String"></field>
+		<!--		<field  name="Test Case ID"  reality="caseID"></field>-->
 
-<!--		<field  name="sessionid"  reality="sessionID"></field>-->
-<!--		<field  name="Comment"  reality ="Comment"></field>-->
-<!--		<field  name="Tester"  	reality ="Tester"></field>-->
-<!--		<field  name="Test Date" reality ="Test Date"></field>-->
+		<field name="Serverity" reality ="Result Serverity" type = "Test Results" fieldType="String"></field>
+		<field name="HW Version" reality ="HW Result Version" type = "Test Results" fieldType="String"></field>
+		<field name="Reproducibility" reality ="Reproducibility"	type = "Test Results" fieldType="String"></field>
+		<field name="Test date" reality ="Test date"	type = "Test Results" fieldType="String"></field>
+
+		<!--		最后-->
+		<field name="Test procedure" reality ="Test Procedure"	type = "Test Step" fieldType="LongText"></field>
+		<field  name="Annotation"  reality="annotation" type = "Test Results" fieldType="LongText"></field>
+	</type>
+	<type name="Software Integration Test" >
+		<field name="Verdict"  fieldType="String" reality ="verdictType" type = "Test Results"></field>
+		<field name="SW Version" reality ="SW Version"	type = "Test Results" fieldType="String"></field>
+		<field name="Observed Result" reality ="Observed Result"	type = "Test Results" fieldType="String"></field>
+		<field name="Tester" reality ="Tester"	type = "Test Results" fieldType="String"></field>
+		<field name="Expected Results" reality ="Expected Results"	type = "Test Case" fieldType="String"></field>
+
+<!--		<field  name="Test Case ID"  reality="caseID"></field>-->
+
+		<field name="Serverity" reality ="Result Serverity" type = "Test Results" fieldType="String"></field>
+		<field name="HW Version" reality ="HW Result Version" type = "Test Results" fieldType="String"></field>
+		<field name="Reproducibility" reality ="Reproducibility"	type = "Test Results" fieldType="String"></field>
+		<field name="Test date" reality ="Test date"	type = "Test Results" fieldType="String"></field>
+
+		<!--		最后-->
+		<field name="Test Input" reality ="Test Input"	type = "Test Step" fieldType="LongText"></field>
+		<field name="Test Output" reality ="Test Output"	type = "Test Step" fieldType="LongText"></field>
+		<field name="Test procedure" reality ="Test Procedure"	type = "Test Step" fieldType="LongText"></field>
+		<field  name="Annotation"  reality="annotation" type = "Test Results" fieldType="LongText"></field>
 	</type>
 </fieldMapping>
 
