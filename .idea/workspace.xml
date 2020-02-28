@@ -8,13 +8,10 @@
   <component name="ChangeListManager">
     <list default="true" id="9ff6d16f-df88-4c43-a121-5752db439097" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/SearchResult_jar/SearchResult.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/SearchResult_jar/SearchResult.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SearchResult/InfoMapping.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SearchResult/InfoMapping.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SearchResult/com/gw/util/AnalysisXML.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SearchResult/com/gw/util/AnalysisXML.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gw/ui/ImportGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gw/ui/ImportGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gw/util/AnalysisXML.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gw/util/AnalysisXML.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/gw/util/MKSCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gw/util/MKSCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/InfoMapping.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/InfoMapping.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,7 +157,7 @@
       <workItem from="1582684237113" duration="663000" />
       <workItem from="1582802294350" duration="13010000" />
       <workItem from="1582853549589" duration="968000" />
-      <workItem from="1582854820580" duration="1532000" />
+      <workItem from="1582854820580" duration="2142000" />
     </task>
     <servers />
   </component>
@@ -180,46 +177,46 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="413" y="114" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1366.728@0.0.1366.728" timestamp="1582814019990" />
-    <state width="445" height="466" key="DebuggerActiveHint" timestamp="1582857603970">
+    <state width="445" height="466" key="DebuggerActiveHint" timestamp="1582858579766">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="445" height="466" key="DebuggerActiveHint/0.0.1366.728@0.0.1366.728" timestamp="1582857603970" />
+    <state width="445" height="466" key="DebuggerActiveHint/0.0.1366.728@0.0.1366.728" timestamp="1582858579766" />
     <state x="524" y="95" width="440" height="490" key="FileChooserDialogImpl" timestamp="1582854538939">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="524" y="95" width="440" height="490" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1582854538939" />
-    <state width="1323" height="137" key="GridCell.Tab.0.bottom" timestamp="1582857995667">
+    <state width="1323" height="137" key="GridCell.Tab.0.bottom" timestamp="1582858604577">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="137" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1582857995667" />
-    <state width="1323" height="137" key="GridCell.Tab.0.center" timestamp="1582857995667">
+    <state width="1323" height="137" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1582858604577" />
+    <state width="1323" height="137" key="GridCell.Tab.0.center" timestamp="1582858604577">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="137" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1582857995667" />
-    <state width="1323" height="137" key="GridCell.Tab.0.left" timestamp="1582857995667">
+    <state width="1323" height="137" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1582858604577" />
+    <state width="1323" height="137" key="GridCell.Tab.0.left" timestamp="1582858604577">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="137" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1582857995667" />
-    <state width="1323" height="137" key="GridCell.Tab.0.right" timestamp="1582857995667">
+    <state width="1323" height="137" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1582858604577" />
+    <state width="1323" height="137" key="GridCell.Tab.0.right" timestamp="1582858604577">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="137" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1582857995667" />
-    <state width="1323" height="137" key="GridCell.Tab.1.bottom" timestamp="1582857995473">
+    <state width="1323" height="137" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1582858604577" />
+    <state width="1323" height="137" key="GridCell.Tab.1.bottom" timestamp="1582858608214">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="137" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1582857995473" />
-    <state width="1323" height="137" key="GridCell.Tab.1.center" timestamp="1582857995473">
+    <state width="1323" height="137" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1582858608214" />
+    <state width="1323" height="137" key="GridCell.Tab.1.center" timestamp="1582858608214">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="137" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1582857995473" />
-    <state width="1323" height="137" key="GridCell.Tab.1.left" timestamp="1582857995473">
+    <state width="1323" height="137" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1582858608214" />
+    <state width="1323" height="137" key="GridCell.Tab.1.left" timestamp="1582858608214">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="137" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1582857995473" />
-    <state width="1323" height="137" key="GridCell.Tab.1.right" timestamp="1582857995473">
+    <state width="1323" height="137" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1582858608214" />
+    <state width="1323" height="137" key="GridCell.Tab.1.right" timestamp="1582858608214">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="137" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1582857995473" />
+    <state width="1323" height="137" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1582858608214" />
     <state x="163" y="0" key="SettingsEditor" timestamp="1582531523177">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -244,5 +241,16 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1582540570223" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/gw/util/MKSCommand.java</url>
+          <line>970</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
