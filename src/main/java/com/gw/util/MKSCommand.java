@@ -1160,6 +1160,7 @@ public class MKSCommand {
 		try {
 			String host = ENVIRONMENTVAR.get(Constants.MKSSI_HOST);
 			if(host==null || host.length()==0) {
+//				host = "192.168.10.128";
 				host = "192.168.229.133";
 			}
 			String portStr = ENVIRONMENTVAR.get(Constants.MKSSI_PORT);
@@ -1199,6 +1200,7 @@ public class MKSCommand {
 		tsIds.add("21193");
 //		tsIds.add("11207");
 //		tsIds.add("9870");
+//		tsIds.add("21221");
 
 		if (tsIds.size() > 0) {//如果选中的id集合不为空，通过id获取条目简要信息
 			List<Map<String, String>> itemByIds = cmd.getItemByIds(tsIds, Arrays.asList("ID", "Type","Summary","Tests"));

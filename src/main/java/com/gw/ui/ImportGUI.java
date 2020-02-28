@@ -284,7 +284,7 @@ import java.util.Map;
                 JPanel jp = new JPanel();
                 jp.setSize(30,1);
                 if(TypeStr.indexOf(s) >-1){      //文本域单独box
-                    JTextField jl=new JTextField(s,15);
+                    JTextField jl=new JTextField(s,16);
                     jl.setEditable(false);  //不可编辑
                     jl.setBorder(null);  //不显示边框
                     jl.setHorizontalAlignment(JTextField.RIGHT);
