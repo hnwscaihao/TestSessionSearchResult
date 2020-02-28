@@ -9,16 +9,13 @@
 		<field name="Observed Result" reality ="Observed Result"	type = "Test Results" fieldType="String" ></field>
 		<field name="Expected Results" reality ="Expected Results"	type = "Test Case" fieldType="String" ></field>
 		<field name="Tester" reality ="Tester"	type = "Test Results" fieldType="String" ></field>
-<<<<<<< .mine
-<!--		<field  name="Test Case ID"  reality="caseID" type = "Test Results" fieldType="String" ></field>-->
-=======
-		<field name="Test date" reality ="Test date"	type = "Test Results" fieldType="String" ></field>
->>>>>>> .theirs
+
+<!--	<field  name="Test Case ID"  reality="caseID"></field>-->
 
 		<field name="Serverity" reality ="Result Serverity" type = "Test Results" fieldType="String" ></field>
 		<field name="HW Version" reality ="HW Result Version" type = "Test Results" fieldType="String" ></field>
 		<field name="Reproducibility" reality ="Reproducibility"	type = "Test Results" fieldType="String" ></field>
-
+		<field name="Test date" reality ="Test date"	type = "Test Results" fieldType="String" ></field>
 
 	<!--		最后-->
 		<field name="Test procedure" reality ="Test Procedure"	type = "Test Step" fieldType="LongText" ></field>

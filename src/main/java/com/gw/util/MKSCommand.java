@@ -926,7 +926,6 @@ public class MKSCommand {
 
 		Command cmd = new Command("tm", "results");
 		cmd.addOption(new Option("caseID", CaseID));
-
         if(getTypeById(CaseID,"Category").equals("System Qualification Test")){
 			r  =  new AnalysisXML().resultXml("System Qualification Test");
 		} else if(getTypeById(CaseID,"Category").equals("System Integration Test")){
@@ -1161,7 +1160,7 @@ public class MKSCommand {
 		try {
 			String host = ENVIRONMENTVAR.get(Constants.MKSSI_HOST);
 			if(host==null || host.length()==0) {
-				host = "192.168.229.133";
+				host = "192.168.6.130";
 			}
 			String portStr = ENVIRONMENTVAR.get(Constants.MKSSI_PORT);
 			Integer port = portStr!=null && !"".equals(portStr)? Integer.valueOf(portStr) : 7001;
@@ -1197,8 +1196,13 @@ public class MKSCommand {
 		} else {
 			 logger.info("身份验证失败!! :" + issueCount);
 		}
+<<<<<<< .mine
 		tsIds.add("21193");
 //		tsIds.add("11207");
+=======
+//		tsIds.add("9870");
+
+>>>>>>> .theirs
 		if (tsIds.size() > 0) {//如果选中的id集合不为空，通过id获取条目简要信息
 			List<Map<String, String>> itemByIds = cmd.getItemByIds(tsIds, Arrays.asList("ID", "Type","Summary","Tests"));
 			List<String> notTSList = new ArrayList<String>();

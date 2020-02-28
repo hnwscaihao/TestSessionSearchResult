@@ -38,6 +38,7 @@ public class AnalysisXML {
        Map<String,String> lsm2 = new HashMap<String,String>();
         SAXReader saxReader = new SAXReader();
        try {
+<<<<<<< .mine
 //           String pathxml = System.getProperty("user.home")+"\\InfoMapping.xml";
 //           log.info("用户的主目录----------------------"+pathxml);
 //           String dir = System.getProperty("user.dir")+"\\InfoMapping.xml";
@@ -47,6 +48,17 @@ public class AnalysisXML {
 //           InputStream in = resource.getInputStream();
 //           writeToLocal(pathxml,in);
 //           document = reader.read(new File(pathxml));
+=======
+//           String pathxml = System.getProperty("user.home")+"\\InfoMapping.xml";
+//           ClassLoader.getSystemResourceAsStream("InfoMapping.xml");
+//           //获取文件输入流
+//           ClassPathResource resource = new ClassPathResource("\\InfoMapping.xml");
+           InputStream in = AnalysisXML.class.getClassLoader().getSystemResourceAsStream("InfoMapping.xml");
+//           writeToLocal(pathxml,in);
+           document = reader.read(in);
+
+
+>>>>>>> .theirs
 //           document = reader.read(new File(System.getProperty("user.dir")+"\\src\\main\\resources\\InfoMapping.xml"));
 
 
