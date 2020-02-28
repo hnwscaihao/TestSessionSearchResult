@@ -280,23 +280,27 @@ import java.util.Map;
                     }
                 }
 //                                JLabel jl = new JLabel(s,JLabel.RIGHT);
-                JTextField jl=new JTextField(s,16);
-                jl.setEditable(false);  //不可编辑
-                jl.setBorder(null);  //不显示边框
-                jl.setHorizontalAlignment(JTextField.RIGHT);
-                JTextField jt=new JTextField(value,24);
-                jt.setEditable(false);  //不可编辑
 //                                jt.setBorder(null);  //不显示边框
                 JPanel jp = new JPanel();
                 jp.setSize(30,1);
                 if(TypeStr.indexOf(s) >-1){      //文本域单独box
-                    JTextArea jta = new JTextArea(value,4,54);
+                    JTextField jl=new JTextField(s,15);
+                    jl.setEditable(false);  //不可编辑
+                    jl.setBorder(null);  //不显示边框
+                    jl.setHorizontalAlignment(JTextField.RIGHT);
+                    JTextArea jta = new JTextArea(value,4,59);
                     jta.setEnabled(false);
                     JPanel jpl = new JPanel();
                     jpl.add(jl);
                     jpl.add(jta);
                     box10.add(jpl);
                 }else {                     //输入框每竖行一个box
+                    JTextField jl=new JTextField(s,16);
+                    jl.setEditable(false);  //不可编辑
+                    jl.setBorder(null);  //不显示边框
+                    jl.setHorizontalAlignment(JTextField.RIGHT);
+                    JTextField jt=new JTextField(value,24);
+                    jt.setEditable(false);  //不可编辑
                     jp.add(jl);
                     jp.add(jt);
                     int a = testReulst.size();
