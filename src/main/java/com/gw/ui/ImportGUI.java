@@ -289,8 +289,8 @@ import java.util.Map;
 //                                jt.setBorder(null);  //不显示边框
                 JPanel jp = new JPanel();
                 jp.setSize(30,1);
-                if(TypeStr.indexOf(s) >-1){      //文本域单独box  s.equals("Annotation")
-                    JTextArea jta = new JTextArea(value,4,50);
+                if(TypeStr.indexOf(s) >-1){      //文本域单独box
+                    JTextArea jta = new JTextArea(value,4,54);
                     jta.setEnabled(false);
                     JPanel jpl = new JPanel();
                     jpl.add(jl);

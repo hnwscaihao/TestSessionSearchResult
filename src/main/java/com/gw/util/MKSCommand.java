@@ -967,7 +967,16 @@ public class MKSCommand {
 			Iterator<?> iterator = wi.getFields();
 			while (iterator.hasNext()) {
 				Field field = (Field) iterator.next();
-				resultMap.put(field.getName(),field.getValue()==null?"":field.getValue().toString());
+				if(field.getName().equals("Test date")){
+					String date = "";
+					if(!field.getValue().equals("") && field.getValue() !=null){
+						SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+						date = formatter.format((Date)field.getValue());
+					}
+					resultMap.put(field.getName(),date);
+				}else {
+					resultMap.put(field.getName(),field.getValue()==null?"":field.getValue().toString());
+				}
 			}
 		}
 		//根据xml内容遍历 （主要是排序）
@@ -1188,7 +1197,7 @@ public class MKSCommand {
 		} else {
 			 logger.info("身份验证失败!! :" + issueCount);
 		}
-//		tsIds.add("21193");
+		tsIds.add("21193");
 //		tsIds.add("11207");
 		if (tsIds.size() > 0) {//如果选中的id集合不为空，通过id获取条目简要信息
 			List<Map<String, String>> itemByIds = cmd.getItemByIds(tsIds, Arrays.asList("ID", "Type","Summary","Tests"));

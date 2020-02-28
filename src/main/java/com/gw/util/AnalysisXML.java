@@ -3,12 +3,19 @@ package com.gw.util;
 import com.gw.service.ImportService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
 import org.dom4j.Attribute;
-import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
+import org.dom4j.Document;
+//import org.w3c.dom.Document;
+
 import org.springframework.core.io.ClassPathResource;
 
+
+import javax.swing.*;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.*;
 import java.util.*;
 
@@ -29,17 +36,25 @@ public class AnalysisXML {
        List<Map<String,String>> m = new ArrayList<Map<String,String>>();
        Map<String,String> lsm1 = new HashMap<String,String>();
        Map<String,String> lsm2 = new HashMap<String,String>();
+        SAXReader saxReader = new SAXReader();
        try {
-           String pathxml = System.getProperty("user.home")+"\\InfoMapping.xml";
+//           String pathxml = System.getProperty("user.home")+"\\InfoMapping.xml";
 //           log.info("用户的主目录----------------------"+pathxml);
 //           String dir = System.getProperty("user.dir")+"\\InfoMapping.xml";
 //           InputStream in = new FileInputStream(dir);
            //获取文件输入流
-           ClassPathResource resource = new ClassPathResource("\\InfoMapping.xml");
-           InputStream in = resource.getInputStream();
-           writeToLocal(pathxml,in);
-           document = reader.read(new File(pathxml));
+//           ClassPathResource resource = new ClassPathResource("\\InfoMapping.xml");
+//           InputStream in = resource.getInputStream();
+//           writeToLocal(pathxml,in);
+//           document = reader.read(new File(pathxml));
 //           document = reader.read(new File(System.getProperty("user.dir")+"\\src\\main\\resources\\InfoMapping.xml"));
+
+
+           //返回读取指定资源的输入流
+           InputStream in = AnalysisXML.class.getClassLoader().getSystemResourceAsStream("InfoMapping.xml");
+//           writeToLocal(pathxml,in);
+           document = reader.read(in);
+
            //3.获取根节点
            Element rootElement = document.getRootElement();
            Iterator iterator = rootElement.elementIterator();
@@ -105,6 +120,6 @@ public class AnalysisXML {
 
    public static void main(String[] args){
        AnalysisXML r = new AnalysisXML();
-//       r.resultXml();
+       r.resultXml("");
    }
 }
