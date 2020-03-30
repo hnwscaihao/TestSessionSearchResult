@@ -43,6 +43,7 @@ import java.util.Map;
     JTextField txtfield1=new JTextField(30);    //创建文本框
 
     public String sessionid = "";
+    public String caseId = "";
     public  Map<String,String> caseIds = new HashMap<String,String>();
 
     List<Map<String,String>> testReulst;
@@ -74,7 +75,7 @@ import java.util.Map;
 
 
         setTitle("查询测试实例");
-        setBounds(0, 0, 580, 400);
+        setBounds(0, 0, 680, 480);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(springLayout);//设置窗体布局格式为弹簧式布局
         setLocationRelativeTo(null);//窗体居中显示
@@ -92,7 +93,7 @@ import java.util.Map;
         initBtn(0);//按钮
 //        int tabIndex = jtp.getSelectedIndex();
         tabGUi1.setLayout(new BorderLayout(20,-5));
-        jtp.setPreferredSize(new Dimension(563,320));
+        jtp.setPreferredSize(new Dimension(663,400));
         tabUp1.add(jtp);
         tabGUi1.add(tabUp1);
         tabGUi1.add(tabUp2,BorderLayout.SOUTH);
@@ -203,6 +204,7 @@ import java.util.Map;
                         return;
                     }else if(!testSession.equals("")){
                         try {
+                            caseId = testSession;
                             Result result = m.viewresultByCaseID(sessionid,testSession);
                             testReulst = (List<Map<String,String>>)result.getData();   //测试结果数据
                             Map<String,String> map =  result.getMap1();
@@ -231,6 +233,7 @@ import java.util.Map;
                                 JOptionPane.showMessageDialog(null,"填写的CaseID没有与testSession关联，请重新输入 !","错误",0);
                                 return;
                             }
+                            caseId = testSessionId;
                             Result result = m.viewresultByCaseID(sessionid,testSessionId);
                             testReulst = (List<Map<String,String>>)result.getData();     //测试结果数据
                             Map<String,String> map =  result.getMap1();
@@ -268,6 +271,7 @@ import java.util.Map;
 
     //info详情 复用代码
     public void Swingfy(){
+        setTitle("查询测试实例 CaseID:("+caseId+")");
         int i = 0;
         int box6L = 0;
         int box7L = 0;
@@ -288,24 +292,29 @@ import java.util.Map;
                     jl.setEditable(false);  //不可编辑
                     jl.setBorder(null);  //不显示边框
                     jl.setHorizontalAlignment(JTextField.RIGHT);
-                    JTextArea jta = new JTextArea(value,4,59);
+                    JTextArea jta = new JTextArea(value,4,56);
+                    jta.setLineWrap(true);        //激活自动换行功能
                     jta.setEnabled(false);
+
                     JPanel jpl = new JPanel();
                     jpl.add(jl);
                     jpl.add(jta);
+                    jpl.add(new JScrollPane(jta,
+                            ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
+                            ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER));
                     box10.add(jpl);
                 }else {                     //输入框每竖行一个box
                     JTextField jl=new JTextField(s,16);
                     jl.setEditable(false);  //不可编辑
                     jl.setBorder(null);  //不显示边框
                     jl.setHorizontalAlignment(JTextField.RIGHT);
-                    JTextField jt=new JTextField(value,24);
+                    JTextField jt=new JTextField(value,29);
                     jt.setEditable(false);  //不可编辑
                     jp.add(jl);
                     jp.add(jt);
                     int a = testReulst.size();
                     int b = TypeStr.split(",").length;
-                    if(i <= (a-b)/2){
+                    if(i < (a-b)/2){
                         box6.add(jp);
                         box6L++;
                     }else {
@@ -361,6 +370,7 @@ import java.util.Map;
         tabUp2.removeAll();
         JPanel jp = new JPanel();
         if(index == 0){
+            setTitle("查询测试实例");
             JButton button = new JButton("Search");
             button.setFocusPainted(false);  //去掉按钮字体焦点框
             button.setPreferredSize(new Dimension(78,34));

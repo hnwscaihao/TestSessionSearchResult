@@ -1160,16 +1160,21 @@ public class MKSCommand {
 		try {
 			String host = ENVIRONMENTVAR.get(Constants.MKSSI_HOST);
 			if(host==null || host.length()==0) {
-//				host = "192.168.10.128";
-				host = "192.168.229.133";
+				host = "192.168.229.133";//本地
+//				host = "10.255.33.189";//服务器
 			}
 			String portStr = ENVIRONMENTVAR.get(Constants.MKSSI_PORT);
 			Integer port = portStr!=null && !"".equals(portStr)? Integer.valueOf(portStr) : 7001;
 			String defaultUser = ENVIRONMENTVAR.get(Constants.MKSSI_USER);
 			String pwd = "";
 			if(defaultUser == null || "".equals(defaultUser) ){
+				//本地
 				defaultUser = "admin";
 				pwd = "admin";
+
+				//服务器
+//				defaultUser = "admin";
+//				pwd = "456@alm.com";
 			}
 			logger.info("host:" + host+"; defaultUser:"+defaultUser+"; pwd:"+pwd);
 			cmd = new MKSCommand(host, 7001, defaultUser, pwd, 4, 16);
@@ -1197,9 +1202,9 @@ public class MKSCommand {
 		} else {
 			 logger.info("身份验证失败!! :" + issueCount);
 		}
-		tsIds.add("21193");
-//		tsIds.add("11207");
-//		tsIds.add("9870");
+//		tsIds.add("21193");
+		tsIds.add("11207");//本地
+//		tsIds.add("140176");//服务器
 //		tsIds.add("21221");
 
 		if (tsIds.size() > 0) {//如果选中的id集合不为空，通过id获取条目简要信息
