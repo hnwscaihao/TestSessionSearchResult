@@ -77,7 +77,7 @@ import static javax.swing.SpringLayout.EAST;
 
 
         setTitle("查询测试实例");
-        setBounds(0, 0, 680, 480);
+        setBounds(0, 0, 700, 480);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //        setLayout(springLayout);//设置窗体布局格式为弹簧式布局
         setLocationRelativeTo(null);//窗体居中显示
@@ -95,7 +95,7 @@ import static javax.swing.SpringLayout.EAST;
         initBtn(0);//按钮
 //        int tabIndex = jtp.getSelectedIndex();
         tabGUi1.setLayout(new BorderLayout(20,-5));
-        jtp.setPreferredSize(new Dimension(663,400));
+        jtp.setPreferredSize(new Dimension(683,400));
         tabUp1.add(jtp);
         tabGUi1.add(tabUp1);
         tabGUi1.add(tabUp2,BorderLayout.SOUTH);
@@ -295,7 +295,7 @@ import static javax.swing.SpringLayout.EAST;
                     JTextArea jta = new JTextArea(value);//56
 //                    JTextArea jta = new JTextArea(value,4,56);
 //                    jta.setSize(452,76);
-                    jl.setPreferredSize(new Dimension(96, 76));
+                    jl.setPreferredSize(new Dimension(116, 76));
 //                    jta.setPreferredSize(new Dimension(452, 76));
 
                     jta.setLineWrap(true);        //激活自动换行功能
@@ -307,7 +307,7 @@ import static javax.swing.SpringLayout.EAST;
                             JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
                     js.setVerticalScrollBarPolicy(
                             JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-                    js.setPreferredSize(new Dimension(475, 76));
+                    js.setPreferredSize(new Dimension(455, 76));
                    // js.setBounds(0,0,10,10);
 
 //                    jpl.add(new JScrollPane(jta,
@@ -323,12 +323,12 @@ import static javax.swing.SpringLayout.EAST;
                     jl.setEditable(false);  //不可编辑
                     jl.setBorder(null);  //不显示边框
                     jl.setHorizontalAlignment(JTextField.RIGHT);
-                    jl.setPreferredSize(new Dimension(96, 21));
+                    jl.setPreferredSize(new Dimension(116, 21));
 //                    Dimension wh = jl.getPreferredSize();
                     JTextField jt=new JTextField(value);//180,21
 //                    Dimension wh1 = jt.getPreferredSize();
                     jt.setEditable(false);  //不可编辑
-                    jt.setPreferredSize(new Dimension(180, 21));
+                    jt.setPreferredSize(new Dimension(160, 21));
 
                     jp.add(jl);
                     jp.add(jt);
