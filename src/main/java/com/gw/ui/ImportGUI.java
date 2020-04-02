@@ -274,9 +274,6 @@ import static javax.swing.SpringLayout.EAST;
         int i = 0;
         int box6L = 0;
         int box7L = 0;
-        int  labwidth = 16;
-        int  textwidth = 56;
-        int  textwidth2 = 56;
         for(Map<String,String> testMap : testReulst){
             for(String s : testMap.keySet()){
                 String value  = testMap.get(s);
@@ -291,44 +288,50 @@ import static javax.swing.SpringLayout.EAST;
                 jp.setSize(30,1);
 
                 if(TypeStr.indexOf(s) >-1){      //文本域单独box
-                    JTextField jl=new JTextField(s,16);
+                    JTextField jl=new JTextField(s);//16
                     jl.setEditable(false);  //不可编辑
                     jl.setBorder(null);  //不显示边框
                     jl.setHorizontalAlignment(JTextField.RIGHT);
-                    JTextArea jta = new JTextArea(value);
+                    JTextArea jta = new JTextArea(value);//56
 //                    JTextArea jta = new JTextArea(value,4,56);
 //                    jta.setSize(452,76);
-                    jta.setPreferredSize(new Dimension(452, 76));
-                    Dimension d = jta.getPreferredSize();
+                    jl.setPreferredSize(new Dimension(96, 76));
+//                    jta.setPreferredSize(new Dimension(452, 76));
+
                     jta.setLineWrap(true);        //激活自动换行功能
                     jta.setEnabled(false);
-                    textwidth = jl.getPreferredSize().width ;
-                    textwidth2 = jta.getPreferredSize().width;
                  //   jta.setSize(76,584);
-                    log.info("textwidth------------------"+textwidth);
+                    JScrollPane js=new JScrollPane(jta);
+                    //分别设置水平和垂直滚动条自动出现
+                    js.setHorizontalScrollBarPolicy(
+                            JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+                    js.setVerticalScrollBarPolicy(
+                            JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+                    js.setPreferredSize(new Dimension(475, 76));
+                   // js.setBounds(0,0,10,10);
+
+//                    jpl.add(new JScrollPane(jta,
+//                            ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
+//                            ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER
+//                    ));
                     JPanel jpl = new JPanel();
                     jpl.add(jl);
-                    jpl.add(jta);
-
-                    jpl.add(new JScrollPane(jta,
-                            ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
-                            ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER
-                           // ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED // 需要时显示（默认）
-                    ));
-
+                    jpl.add(js);
                     box10.add(jpl);
-                    log.info("box10------------------"+box10.getPreferredSize().width);
                 }else {                     //输入框每竖行一个box
-                    JTextField jl=new JTextField(s,16);
+                    JTextField jl=new JTextField(s);//96,15
                     jl.setEditable(false);  //不可编辑
                     jl.setBorder(null);  //不显示边框
                     jl.setHorizontalAlignment(JTextField.RIGHT);
-                    JTextField jt=new JTextField(value,29);
+                    jl.setPreferredSize(new Dimension(96, 21));
+//                    Dimension wh = jl.getPreferredSize();
+                    JTextField jt=new JTextField(value);//180,21
+//                    Dimension wh1 = jt.getPreferredSize();
                     jt.setEditable(false);  //不可编辑
+                    jt.setPreferredSize(new Dimension(180, 21));
+
                     jp.add(jl);
                     jp.add(jt);
-                    labwidth = jl.getPreferredSize().width + jt.getPreferredSize().width;
-                    log.info("text------------------"+labwidth);
                     int a = testReulst.size();
                     int b = TypeStr.split(",").length;
                     if(i <= (a-b)/2){
@@ -337,7 +340,6 @@ import static javax.swing.SpringLayout.EAST;
                         box6L++;
                     }else {
                         box7.add(jp);
-                        log.info("box7------------------"+box7.getPreferredSize().width);
                         box7L++;
                     }
                 }
@@ -359,24 +361,7 @@ import static javax.swing.SpringLayout.EAST;
         }
         box8.add(box6);
         box8.add(box7);
-        log.info("box8------------------"+box8.getPreferredSize().width);
 
-        JTextField jl=new JTextField("log",16);
-        jl.setEditable(false);  //不可编辑
-        jl.setBorder(null);  //不显示边框
-        jl.setHorizontalAlignment(JTextField.RIGHT);
-        JTextArea jta = new JTextArea("textArea:" + textwidth
-                + " , textwidth2:" +textwidth2
-                + " , textwidthAll:" +(textwidth2+textwidth)
-                + " , text:" + labwidth
-                + " , box8:" +box8.getPreferredSize().width
-                + " , box10:"+box10.getPreferredSize().width,4,56);
-        jta.setLineWrap(true);        //激活自动换行功能
-        jta.setEnabled(false);
-        JPanel jpl = new JPanel();
-        jpl.add(jl);
-        jpl.add(jta);
-        box10.add(jpl);
     }
 
 //大于10的字体缩略
