@@ -301,7 +301,10 @@ import java.util.Map;
                     jpl.add(jta);
                     jpl.add(new JScrollPane(jta,
                             ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
-                            ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER));
+                            //ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER
+                            ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED // 需要时显示（默认）
+                    ));
+
                     box10.add(jpl);
                 }else {                     //输入框每竖行一个box
                     JTextField jl=new JTextField(s,16);
@@ -314,7 +317,7 @@ import java.util.Map;
                     jp.add(jt);
                     int a = testReulst.size();
                     int b = TypeStr.split(",").length;
-                    if(i < (a-b)/2){
+                    if(i <= (a-b)/2){
                         box6.add(jp);
                         box6L++;
                     }else {
