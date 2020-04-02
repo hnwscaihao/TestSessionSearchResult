@@ -18,6 +18,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static javax.swing.SpringLayout.EAST;
+
 /**
  * Swing面板 lxg
  *
@@ -77,7 +79,7 @@ import java.util.Map;
         setTitle("查询测试实例");
         setBounds(0, 0, 680, 480);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(springLayout);//设置窗体布局格式为弹簧式布局
+//        setLayout(springLayout);//设置窗体布局格式为弹簧式布局
         setLocationRelativeTo(null);//窗体居中显示
         setResizable(false);//窗体是否可以放大
 
@@ -109,10 +111,6 @@ import java.util.Map;
         button1.setFocusPainted(false);  //去掉按钮字体焦点框
         box4.add(button1);
 
-        box8.add(box6);
-//        box8.add(Box.createHorizontalStrut(10));
-        box8.add(box7);
-
         box9.add(box8);
         box9.add(box10);
 //        box9.add(Box.createVerticalStrut(60));
@@ -124,7 +122,8 @@ import java.util.Map;
         JScrollPane scrollPane = new JScrollPane(
                 jp2,
                 ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
-                ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER
+                //ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER
+                ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED // 需要时显示（默认）
         );
         jtp.addTab("info" ,scrollPane);
         jtp.setEnabledAt(1,false); //tab不可选
@@ -275,6 +274,9 @@ import java.util.Map;
         int i = 0;
         int box6L = 0;
         int box7L = 0;
+        int  labwidth = 16;
+        int  textwidth = 56;
+        int  textwidth2 = 56;
         for(Map<String,String> testMap : testReulst){
             for(String s : testMap.keySet()){
                 String value  = testMap.get(s);
@@ -287,25 +289,35 @@ import java.util.Map;
 //                                jt.setBorder(null);  //不显示边框
                 JPanel jp = new JPanel();
                 jp.setSize(30,1);
+
                 if(TypeStr.indexOf(s) >-1){      //文本域单独box
                     JTextField jl=new JTextField(s,16);
                     jl.setEditable(false);  //不可编辑
                     jl.setBorder(null);  //不显示边框
                     jl.setHorizontalAlignment(JTextField.RIGHT);
-                    JTextArea jta = new JTextArea(value,4,56);
+                    JTextArea jta = new JTextArea(value);
+//                    JTextArea jta = new JTextArea(value,4,56);
+//                    jta.setSize(452,76);
+                    jta.setPreferredSize(new Dimension(452, 76));
+                    Dimension d = jta.getPreferredSize();
                     jta.setLineWrap(true);        //激活自动换行功能
                     jta.setEnabled(false);
-
+                    textwidth = jl.getPreferredSize().width ;
+                    textwidth2 = jta.getPreferredSize().width;
+                 //   jta.setSize(76,584);
+                    log.info("textwidth------------------"+textwidth);
                     JPanel jpl = new JPanel();
                     jpl.add(jl);
                     jpl.add(jta);
+
                     jpl.add(new JScrollPane(jta,
                             ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
-                            //ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER
-                            ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED // 需要时显示（默认）
+                            ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER
+                           // ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED // 需要时显示（默认）
                     ));
 
                     box10.add(jpl);
+                    log.info("box10------------------"+box10.getPreferredSize().width);
                 }else {                     //输入框每竖行一个box
                     JTextField jl=new JTextField(s,16);
                     jl.setEditable(false);  //不可编辑
@@ -315,13 +327,17 @@ import java.util.Map;
                     jt.setEditable(false);  //不可编辑
                     jp.add(jl);
                     jp.add(jt);
+                    labwidth = jl.getPreferredSize().width + jt.getPreferredSize().width;
+                    log.info("text------------------"+labwidth);
                     int a = testReulst.size();
                     int b = TypeStr.split(",").length;
                     if(i <= (a-b)/2){
                         box6.add(jp);
+
                         box6L++;
                     }else {
                         box7.add(jp);
+                        log.info("box7------------------"+box7.getPreferredSize().width);
                         box7L++;
                     }
                 }
@@ -341,6 +357,26 @@ import java.util.Map;
             jl.setBorder(null);  //不显示边框
             box7.add(jpls.add(jl));
         }
+        box8.add(box6);
+        box8.add(box7);
+        log.info("box8------------------"+box8.getPreferredSize().width);
+
+        JTextField jl=new JTextField("log",16);
+        jl.setEditable(false);  //不可编辑
+        jl.setBorder(null);  //不显示边框
+        jl.setHorizontalAlignment(JTextField.RIGHT);
+        JTextArea jta = new JTextArea("textArea:" + textwidth
+                + " , textwidth2:" +textwidth2
+                + " , textwidthAll:" +(textwidth2+textwidth)
+                + " , text:" + labwidth
+                + " , box8:" +box8.getPreferredSize().width
+                + " , box10:"+box10.getPreferredSize().width,4,56);
+        jta.setLineWrap(true);        //激活自动换行功能
+        jta.setEnabled(false);
+        JPanel jpl = new JPanel();
+        jpl.add(jl);
+        jpl.add(jta);
+        box10.add(jpl);
     }
 
 //大于10的字体缩略
