@@ -401,6 +401,7 @@ import static javax.swing.SpringLayout.EAST;
             button.setFocusPainted(false);  //去掉按钮字体焦点框
             button.setPreferredSize(new Dimension(78,34));
             button.setLocation(120,0);
+            button.setFont(new Font("宋体",Font.PLAIN,12));
             Listener1(button,1);
             jp.add(button);
             tabUp2.setLayout(new BorderLayout());
@@ -409,6 +410,7 @@ import static javax.swing.SpringLayout.EAST;
             JButton button = new JButton("back");
             button.setFocusPainted(false);  //去掉按钮字体焦点框
             button.setPreferredSize(new Dimension(81,32));
+            button.setFont(new Font("宋体",Font.PLAIN,12));
             Listener1(button,0);
             jp.add(button);
             tabUp2.setLayout(new BorderLayout());
