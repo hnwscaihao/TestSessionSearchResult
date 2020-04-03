@@ -291,6 +291,7 @@ import static javax.swing.SpringLayout.EAST;
                     JTextField jl=new JTextField(s);//16
                     jl.setEditable(false);  //不可编辑
                     jl.setBorder(null);  //不显示边框
+                    jl.setFont(new Font("宋体",Font.PLAIN,12));
                     jl.setHorizontalAlignment(JTextField.RIGHT);
                     JTextArea jta = new JTextArea(value);//56
 //                    JTextArea jta = new JTextArea(value,4,56);
@@ -322,6 +323,7 @@ import static javax.swing.SpringLayout.EAST;
                     JTextField jl=new JTextField(s);//96,15
                     jl.setEditable(false);  //不可编辑
                     jl.setBorder(null);  //不显示边框
+                    jl.setFont(new Font("宋体",Font.PLAIN,12));
                     jl.setHorizontalAlignment(JTextField.RIGHT);
                     jl.setPreferredSize(new Dimension(116, 21));
 //                    Dimension wh = jl.getPreferredSize();
