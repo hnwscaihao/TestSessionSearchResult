@@ -926,7 +926,6 @@ public class MKSCommand {
 
 		Command cmd = new Command("tm", "results");
 		cmd.addOption(new Option("caseID", CaseID));
-		cmd.addOption(new Option("SessionID", SessionId));
         if(getTypeById(CaseID,"Category").equals("System Qualification Test")){
 			r  =  new AnalysisXML().resultXml("System Qualification Test");
 		} else if(getTypeById(CaseID,"Category").equals("System Integration Test")){
@@ -964,6 +963,9 @@ public class MKSCommand {
 
 		while (it.hasNext()) {
 			WorkItem wi = it.next();
+			if(!wi.getDisplayId().startsWith(SessionId + ":")){
+				continue;
+			}
 			Iterator<?> iterator = wi.getFields();
 			while (iterator.hasNext()) {
 				Field field = (Field) iterator.next();
@@ -1161,7 +1163,7 @@ public class MKSCommand {
 		try {
 			String host = ENVIRONMENTVAR.get(Constants.MKSSI_HOST);
 			if(host==null || host.length()==0) {
-				host = "192.168.229.133";//本地
+				host = "192.168.6.130";//本地
 //				host = "10.255.33.189";//服务器
 			}
 			String portStr = ENVIRONMENTVAR.get(Constants.MKSSI_PORT);
@@ -1204,9 +1206,9 @@ public class MKSCommand {
 			 logger.info("身份验证失败!! :" + issueCount);
 		}
 //		tsIds.add("21193");
-		tsIds.add("11207");//本地
+//		tsIds.add("11207");//本地
 //		tsIds.add("140176");//服务器
-//		tsIds.add("21221");
+//		tsIds.add("9871");
 
 		if (tsIds.size() > 0) {//如果选中的id集合不为空，通过id获取条目简要信息
 			List<Map<String, String>> itemByIds = cmd.getItemByIds(tsIds, Arrays.asList("ID", "Type","Summary","Tests"));

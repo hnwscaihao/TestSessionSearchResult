@@ -4,7 +4,7 @@
 		fieldType字段类型
 -->
 	<type name="System Qualification Test" >
-		<field name="Verdict"  reality ="verdictType" type = "Test Results" fieldType="String" ></field>
+		<field name="Verdict"  reality ="verdict" type = "Test Results" fieldType="String" ></field>
 		<field name="SW Version" reality ="SW Version"	type = "Test Results" fieldType="String" ></field>
 
 		<field name="Tester" reality ="Tester"	type = "Test Results" fieldType="String" ></field>
@@ -28,7 +28,7 @@
 	<!--		<field  name="Test Date" reality ="Test Date"></field>-->
 	</type>
 	<type name="System Integration Test" >
-		<field name="Verdict"  fieldType="String" reality ="verdictType" type = "Test Results"></field>
+		<field name="Verdict"  fieldType="String" reality ="verdict" type = "Test Results"></field>
 		<field name="SW Version" reality ="SW Version"	type = "Test Results" fieldType="String"></field>
 <!--		<field name="Observed Result" reality ="Observed Result"	type = "Test Results" fieldType="String"></field>-->
 		<field name="Tester" reality ="Tester"	type = "Test Results" fieldType="String"></field>
@@ -48,7 +48,7 @@
 		<field  name="Annotation"  reality="annotation" type = "Test Results" fieldType="LongText"></field>
 	</type>
 	<type name="Software Qualification Test" >
-		<field name="Verdict"  fieldType="String" reality ="verdictType" type = "Test Results" ></field>
+		<field name="Verdict"  fieldType="String" reality ="verdict" type = "Test Results" ></field>
 		<field name="SW Version" reality ="SW Version"	type = "Test Results" fieldType="String"></field>
 <!--		<field name="Observed Result" reality ="Observed Result"	type = "Test Results" fieldType="String"></field>-->
 <!--		<field name="Expected Results" reality ="Expected Results"	type = "Test Case" fieldType="String"></field>-->
@@ -67,7 +67,7 @@
 		<field  name="Annotation"  reality="annotation" type = "Test Results" fieldType="LongText"></field>
 	</type>
 	<type name="Software Integration Test" >
-		<field name="Verdict"  fieldType="String" reality ="verdictType" type = "Test Results"></field>
+		<field name="Verdict"  fieldType="String" reality ="verdict" type = "Test Results"></field>
 		<field name="SW Version" reality ="SW Version"	type = "Test Results" fieldType="String"></field>
 <!--		<field name="Observed Result" reality ="Observed Result"	type = "Test Results" fieldType="String"></field>-->
 		<field name="Tester" reality ="Tester"	type = "Test Results" fieldType="String"></field>
