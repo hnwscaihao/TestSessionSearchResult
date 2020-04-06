@@ -916,7 +916,7 @@ public class MKSCommand {
 	 * @return
 	 * @throws APIException
 	 */
-	public Result viewresultByCaseID(String SesssionId, String CaseID) throws APIException {
+	public Result viewresultByCaseID(String SessionId, String CaseID) throws APIException {
 		Result result = new Result(); //最终返回数据
 		List<Map<String,String>> map = new ArrayList<Map<String,String>>();
 		Map<String,String> resultMap = new HashMap<String,String>();//查询返回数据
@@ -926,6 +926,7 @@ public class MKSCommand {
 
 		Command cmd = new Command("tm", "results");
 		cmd.addOption(new Option("caseID", CaseID));
+		cmd.addOption(new Option("SessionID", SessionId));
         if(getTypeById(CaseID,"Category").equals("System Qualification Test")){
 			r  =  new AnalysisXML().resultXml("System Qualification Test");
 		} else if(getTypeById(CaseID,"Category").equals("System Integration Test")){
