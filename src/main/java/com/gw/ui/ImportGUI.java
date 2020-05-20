@@ -277,11 +277,11 @@ import static javax.swing.SpringLayout.EAST;
         for(Map<String,String> testMap : testReulst){
             for(String s : testMap.keySet()){
                 String value  = testMap.get(s);
-                if(s.equals("Test Input") || s.equals("Test Output") || s.equals("Test procedure")){
-                    if(value ==null || value.equals("")){
-                        value = "N/A";
-                    }
-                }
+//                if(s.equals("Input") || s.equals("Output") || s.equals("Test procedure")){
+//                    if(value ==null || value.equals("")){
+//                        value = "N/A";
+//                    }
+//                }
 //                                JLabel jl = new JLabel(s,JLabel.RIGHT);
 //                                jt.setBorder(null);  //不显示边框
                 JPanel jp = new JPanel();
@@ -334,11 +334,11 @@ import static javax.swing.SpringLayout.EAST;
 
                     jp.add(jl);
                     jp.add(jt);
-                    int a = testReulst.size();
-                    int b = TypeStr.split(",").length;
-                    if(i <= (a-b)/2){
+                    double a = testReulst.size();
+                    double b = TypeStr.split(",").length;
+                    System.out.println((a-b)/2);
+                    if(i < (a-b)/2){
                         box6.add(jp);
-
                         box6L++;
                     }else {
                         box7.add(jp);

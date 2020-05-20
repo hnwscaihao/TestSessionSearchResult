@@ -15,7 +15,7 @@
 <!--		<field name="Serverity" reality ="Result Serverity" type = "Test Results" fieldType="String" ></field>-->
 		<field name="HW Version" reality ="HW Result Version" type = "Test Results" fieldType="String" ></field>
 		<field name="Reproducibility" reality ="Reproducibility"	type = "Test Results" fieldType="String" ></field>
-		<field name="Test date" reality ="Test date"	type = "Test Results" fieldType="String" ></field>
+		<field name="Test Date" reality ="Test Date"	type = "Test Results" fieldType="String" ></field>
 	<!--		最后-->
 		<field name="Observed Result" reality ="Observed Result"	type = "Test Results" fieldType="LongText" ></field>
 		<field name="Expected Results" reality ="Expected Results"	type = "Test Case" fieldType="LongText" ></field>
@@ -31,7 +31,7 @@
 		<field name="Verdict"  fieldType="String" reality ="verdict" type = "Test Results"></field>
 		<field name="SW Version" reality ="SW Version"	type = "Test Results" fieldType="String"></field>
 <!--		<field name="Observed Result" reality ="Observed Result"	type = "Test Results" fieldType="String"></field>-->
-		<field name="Tester" reality ="Tester"	type = "Test Results" fieldType="String"></field>
+		<field name="Test Date" reality ="Test Date"	type = "Test Results" fieldType="String"></field>
 <!--		<field name="Expected Results" reality ="Expected Results"	type = "Test Case" fieldType="String"></field>-->
 
 <!--		<field  name="Test Case ID"  reality="caseID"></field>-->
@@ -39,12 +39,14 @@
 <!--		<field name="Serverity" reality ="Result Serverity" type = "Test Results" fieldType="String"></field>-->
 		<field name="HW Version" reality ="HW Result Version" type = "Test Results" fieldType="String"></field>
 		<field name="Reproducibility" reality ="Reproducibility"	type = "Test Results" fieldType="String"></field>
-		<field name="Test date" reality ="Test date"	type = "Test Results" fieldType="String"></field>
+		<field name="Tester" reality ="Tester"	type = "Test Results" fieldType="String"></field>
 
 		<!--		最后-->
 		<field name="Observed Result" reality ="Observed Result"	type = "Test Results" fieldType="LongText" ></field>
 		<field name="Expected Results" reality ="Expected Results"	type = "Test Case" fieldType="LongText" ></field>
-		<field name="Call depth" reality ="Call depth"	type = "Test Step" fieldType="LongText"></field>
+		<field name="Input" reality ="Test Input"	type = "Test Step" fieldType="LongText"></field>
+		<field name="Output" reality ="Test Output"	type = "Test Step" fieldType="LongText"></field>
+		<field name="Test procedure" reality ="Test Procedure"	type = "Test Step" fieldType="LongText"></field>
 		<field  name="Annotation"  reality="annotation" type = "Test Results" fieldType="LongText"></field>
 	</type>
 	<type name="Software Qualification Test" >
@@ -58,7 +60,7 @@
 <!--		<field name="Serverity" reality ="Result Serverity" type = "Test Results" fieldType="String"></field>-->
 		<field name="HW Version" reality ="HW Result Version" type = "Test Results" fieldType="String"></field>
 		<field name="Reproducibility" reality ="Reproducibility"	type = "Test Results" fieldType="String"></field>
-		<field name="Test date" reality ="Test date"	type = "Test Results" fieldType="String"></field>
+		<field name="Test Date" reality ="Test Date"	type = "Test Results" fieldType="String"></field>
 
 		<!--		最后-->
 		<field name="Observed Result" reality ="Observed Result"	type = "Test Results" fieldType="LongText" ></field>
@@ -78,14 +80,12 @@
 <!--		<field name="Serverity" reality ="Result Serverity" type = "Test Results" fieldType="String"></field>-->
 		<field name="HW Version" reality ="HW Result Version" type = "Test Results" fieldType="String"></field>
 		<field name="Reproducibility" reality ="Reproducibility"	type = "Test Results" fieldType="String"></field>
-		<field name="Test date" reality ="Test date"	type = "Test Results" fieldType="String"></field>
+		<field name="Test Date" reality ="Test Date"	type = "Test Results" fieldType="String"></field>
 
 		<!--		最后-->
 		<field name="Observed Result" reality ="Observed Result"	type = "Test Results" fieldType="LongText" ></field>
 		<field name="Expected Results" reality ="Expected Results"	type = "Test Case" fieldType="LongText" ></field>
-		<field name="Test Input" reality ="Test Input"	type = "Test Step" fieldType="LongText"></field>
-		<field name="Test Output" reality ="Test Output"	type = "Test Step" fieldType="LongText"></field>
-		<field name="Test procedure" reality ="Test Procedure"	type = "Test Step" fieldType="LongText"></field>
+		<field name="Call Depth" reality ="Call Depth"	type = "Test Step" fieldType="LongText"></field>
 		<field  name="Annotation"  reality="annotation" type = "Test Results" fieldType="LongText"></field>
 	</type>
 </fieldMapping>

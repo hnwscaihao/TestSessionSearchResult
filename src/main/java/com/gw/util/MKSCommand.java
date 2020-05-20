@@ -948,7 +948,7 @@ public class MKSCommand {
 					fields.add(velue);
 				}
 //				else {
-//					cstj.put(key,getTypeById(CaseID,type));
+//					cstj.put(key,getTypeById(CaseID,velue));
 //				}
 			}
 		}
@@ -969,19 +969,20 @@ public class MKSCommand {
 			Iterator<?> iterator = wi.getFields();
 			while (iterator.hasNext()) {
 				Field field = (Field) iterator.next();
-				if(field.getName().equals("Test date")){
-					String date = "";
-					if(field.getValue() !=null){
-						SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-						date = formatter.format((Date)field.getValue());
-					}
-					resultMap.put(field.getName(),date);
-				}else {
+//				if(field.getName().equals("Test Date")){ //Test Date已改为input
+//					String date = "";
+//					if(field.getValue() !=null){
+//						SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//						date = formatter.format((Date)field.getValue());
+//					}
+//					resultMap.put(field.getName(),date);
+//				}else {
 					resultMap.put(field.getName(),field.getValue()==null?"":field.getValue().toString());
-				}
+//				}
 			}
 		}
 		//根据xml内容遍历 （主要是排序）
+		Map<String,String> lm =  r.getMap1();
 		for(Map<String,String> mi: m){
 			for(String key : mi.keySet()){
 				String type = sjtype.get(key);
@@ -994,16 +995,42 @@ public class MKSCommand {
 								map.add(lsm);
 							}
 						}
-					}else {
+					}else if(type.equals("Test Case")){ //查询Test Case字段
 						Map<String,String> lsm = new HashMap<String,String>();
 						lsm.put(key, getTypeById(CaseID,mi.get(key)));
 						map.add(lsm);
+					}else if(type.equals("Test Step")){ //查询Test Step字段
+
+						String testSteps = getTypeById(CaseID,"Test Steps");
+						if(!testSteps.equals("")){
+							String[] testStepId = testSteps.split(",");
+							if(testStepId.length ==1){
+								Map<String,String> lsm = new HashMap<String,String>();
+								String stepzd = getTypeById(testStepId[0],mi.get(key));
+								lsm.put(key, stepzd==null?"N/A":stepzd);
+								map.add(lsm);
+							}else {
+								for(int a=0;a<testStepId.length;a++){
+									Map<String,String> lsm = new HashMap<String,String>();
+									String stepzd = getTypeById(testStepId[a],mi.get(key));
+									lsm.put(key+(a+1)+"("+testStepId[a]+")", stepzd==null?"N/A":stepzd);
+									map.add(lsm);
+									lm.put(key+(a+1)+"("+testStepId[a]+")","LongText");
+								}
+							}
+						}
 					}
 				}
 			}
 		}
 		result.setData(map);
-		result.setMap1(r.getMap1());
+		if(map.size() != lm.size()){
+			lm.remove("Input");
+			lm.remove("Output");
+			lm.remove("Test procedure");
+			lm.remove("Call depth");
+		}
+		result.setMap1(lm);
 		return result;
 	}
 
@@ -1163,8 +1190,10 @@ public class MKSCommand {
 		try {
 			String host = ENVIRONMENTVAR.get(Constants.MKSSI_HOST);
 			if(host==null || host.length()==0) {
-				host = "192.168.6.130";//本地
-//				host = "10.255.33.189";//服务器
+//				host = "192.168.6.130";//本地
+//				host = "192.168.229.133";//本地
+				host = "10.45.31.10";//测试服务器
+//				host = "10.45.23.25";//正式服务器
 			}
 			String portStr = ENVIRONMENTVAR.get(Constants.MKSSI_PORT);
 			Integer port = portStr!=null && !"".equals(portStr)? Integer.valueOf(portStr) : 7001;
@@ -1172,12 +1201,12 @@ public class MKSCommand {
 			String pwd = "";
 			if(defaultUser == null || "".equals(defaultUser) ){
 				//本地
-				defaultUser = "admin";
-				pwd = "admin";
+//				defaultUser = "admin";
+//				pwd = "admin";
 
 				//服务器
-//				defaultUser = "admin";
-//				pwd = "456@alm.com";
+				defaultUser = "admin";
+				pwd = "Svolt@123";
 			}
 			logger.info("host:" + host+"; defaultUser:"+defaultUser+"; pwd:"+pwd);
 			cmd = new MKSCommand(host, 7001, defaultUser, pwd, 4, 16);
